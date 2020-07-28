@@ -1,11 +1,12 @@
 #!/usr/bin/python
-import os
-import json
 import argparse
+import json
+import os
+
 import rofi
-from sporofi.menu import Control, Playlists
 from spotipy import Spotify, SpotifyOAuth
 
+from sporofi.menu import ControlMenu
 
 # DIR_CONF = '$HOME/.config/sporofi/'
 DIR_CONF = './'
@@ -48,14 +49,13 @@ def main():
             client_id=client_conf['client_id'],
             client_secret=client_conf['client_secret'],
             redirect_uri='http://localhost:8080/',
-            scope='playlist-read-private user-modify-playback-state user-read-currently-playing ' \
-                  'user-read-playback-state user-library-read',
+            scope='',
             cache_path=os.path.join(DIR_CONF, 'auth.json')
         )
         sp = Spotify(oauth_manager=oauth)
         rofi_client = rofi.Rofi(rofi_args=['-i'])
 
-        Playlists(sp, rofi_client).run()
+        ControlMenu(sp, rofi_client).run()
 
 
 if __name__ == '__main__':
