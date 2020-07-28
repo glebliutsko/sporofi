@@ -1,6 +1,6 @@
 import typing
 
-from sporofi.menu import Menu, Option
+from sporofi.menu import Menu, Option, RepeatModeMenu
 
 
 class ControlMenu(Menu):
@@ -8,18 +8,15 @@ class ControlMenu(Menu):
         options = [
             Option(
                 text='Next',
-                callback=self._next,
-                args=()
+                callback=self._next
             ),
             Option(
                 text='PlayPause',
-                callback=self._playpause,
-                args=()
+                callback=self._playpause
             ),
             Option(
                 text='Previous',
-                callback=self._previous,
-                args=()
+                callback=self._previous
             )
         ]
 
@@ -40,8 +37,7 @@ class ControlMenu(Menu):
 
         options.append(Option(
             text=f'Repeat [{repeat_state}]',
-            callback=self._repeat,
-            args=(playback['repeat_state'], )
+            callback=RepeatModeMenu
         ))
 
         self.spotify_client.current_playback()
