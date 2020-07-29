@@ -24,3 +24,7 @@ class RepeatModeMenu(Menu):
         ]
 
         return options
+
+    @property
+    def prompt(self):
+        return 'mode'

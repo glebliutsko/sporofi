@@ -37,7 +37,7 @@ class ControlMenu(Menu):
 
         options.append(Option(
             text=f'Repeat [{repeat_state}]',
-            callback=RepeatModeMenu
+            next_menu=RepeatModeMenu
         ))
 
         self.spotify_client.current_playback()

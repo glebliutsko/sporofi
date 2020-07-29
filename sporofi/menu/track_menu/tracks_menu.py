@@ -30,3 +30,7 @@ class TracksMenu(Menu):
             self.spotify_client.start_playback(uris=uris, offset=dict(uri=uri))
         else:
             self.spotify_client.start_playback(context_uri=self._context, offset=dict(uri=uri))
+
+    @property
+    def prompt(self):
+        return 'track'

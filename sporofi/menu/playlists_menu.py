@@ -21,3 +21,7 @@ class PlaylistsMenu(Menu):
             ))
 
         return options
+
+    @property
+    def prompt(self):
+        return 'playlist'

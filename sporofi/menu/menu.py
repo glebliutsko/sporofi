@@ -24,7 +24,7 @@ class Menu:
         options = self.get_options()
 
         options_text = [i.text for i in options]
-        index, key = self.rofi.select('', options_text)
+        index, key = self.rofi.select(self.prompt, options_text, message=self.message)
 
         if key == -1:
             raise UserCancel
@@ -44,3 +44,11 @@ class Menu:
 
     def _generate_options(self) -> typing.List['Option']:
         raise NotImplemented
+
+    @property
+    def prompt(self):
+        return ''
+
+    @property
+    def message(self):
+        return ''

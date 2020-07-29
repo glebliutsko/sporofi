@@ -1,8 +1,5 @@
 import typing
 
-if typing.TYPE_CHECKING:
-    from sporofi.menu import Menu
-
 
 class Option:
     def __init__(self,
