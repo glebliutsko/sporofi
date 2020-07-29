@@ -6,7 +6,7 @@ import os
 import rofi
 from spotipy import Spotify, SpotifyOAuth
 
-from sporofi.menu import ControlMenu
+from sporofi.menu import ControlMenu, LikedTracksMenu, AlbumTracksMenu, PlaylistTracksMenu, ArtistTracksMenu
 
 # DIR_CONF = '$HOME/.config/sporofi/'
 DIR_CONF = './'
@@ -49,7 +49,7 @@ def main():
             client_id=client_conf['client_id'],
             client_secret=client_conf['client_secret'],
             redirect_uri='http://localhost:8080/',
-            scope='',
+            scope='user-modify-playback-state app-remote-control streaming user-read-playback-state user-library-read',
             cache_path=os.path.join(DIR_CONF, 'auth.json')
         )
         sp = Spotify(oauth_manager=oauth)

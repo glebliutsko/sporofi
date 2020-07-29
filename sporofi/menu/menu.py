@@ -9,12 +9,10 @@ if typing.TYPE_CHECKING:
 
 
 class Menu:
-    def __init__(self, spotify_client: 'Spotify', rofi: 'Rofi',  *args):
+    def __init__(self, spotify_client: 'Spotify', rofi: 'Rofi'):
         self.spotify_client = spotify_client
         self.rofi = rofi
         self._options = None
-
-        self.data_last_menu = args
 
     def get_options(self):
         if not self._options:
@@ -26,7 +24,7 @@ class Menu:
         options = self.get_options()
 
         options_text = [i.text for i in options]
-        index, key = self.rofi.select('Playlist', options_text, message='Select playlists')
+        index, key = self.rofi.select('', options_text)
 
         if key == -1:
             raise UserCancel
@@ -39,7 +37,7 @@ class Menu:
 
         selected_options = options[index]
         if selected_options.is_menu():
-            next_menu = selected_options.callback(self.spotify_client, self.rofi, *selected_options.args)
+            next_menu = selected_options.next_menu(self.spotify_client, self.rofi, *selected_options.args)
             next_menu.run()
         else:
             selected_options.callback(*selected_options.args)
