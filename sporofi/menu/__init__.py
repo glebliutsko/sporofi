@@ -15,3 +15,5 @@ from sporofi.menu.user_playlists_menu import UserPlaylistsMenu
 from sporofi.menu.repeat_mode_menu import RepeatModeMenu
 from sporofi.menu.control_menu import ControlMenu
 from sporofi.menu.user_liked_artists_menu import UserLikedArtistsMenu
+
+from sporofi.menu.main_menu import MainMenu

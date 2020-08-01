@@ -1,5 +1,3 @@
-import typing
-
 from sporofi.menu import AlbumsMenu
 from sporofi.utils import get_all_page
 
@@ -10,6 +8,6 @@ class UserLikedAlbumsMenu(AlbumsMenu):
 
         for page in get_all_page(self.spotify_client.current_user_saved_albums, limit=50):
             for album in page:
-                albums.append(album)
+                albums.append(album['album'])
 
         return albums
