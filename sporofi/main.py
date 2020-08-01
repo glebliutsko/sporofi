@@ -6,8 +6,7 @@ import os
 import rofi
 from spotipy import Spotify, SpotifyOAuth
 
-from sporofi.menu import ControlMenu, LikedTracksMenu, AlbumTracksMenu, PlaylistTracksMenu, ArtistTracksMenu, \
-    UserPlaylistsMenu, UserLikedAlbumsMenu, UserLikedArtistsMenu, ArtistAlbumsMenu
+from sporofi.menu import UserLikedAlbumsMenu, ArtistAlbumsMenu, UserLikedArtistsMenu
 from sporofi.exception import UserCancel
 
 # DIR_CONF = '$HOME/.config/sporofi/'
