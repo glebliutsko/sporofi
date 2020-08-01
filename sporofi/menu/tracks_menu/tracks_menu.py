@@ -10,19 +10,19 @@ class TracksMenu(Menu):
     def _context(self) -> str or None:
         raise NotImplemented
 
-    def _get_tracks(self) -> dict:
+    def _get_tracks(self) -> list:
         raise NotImplemented
 
     def _generate_options(self) -> typing.List['Option']:
         tracks = self._get_tracks()
-
+        uris_list = [track['uri'] for track in tracks]
         options = []
-        uris_list = list(tracks.keys())
-        for uri, name in tracks.items():
+
+        for track in self._get_tracks():
             options.append(Option(
-                text=name,
+                text=track['name'],
                 keys={
-                    Key.ENTER: Key(callback=self._start_playing, args=(uris_list, uri))
+                    Key.ENTER: Key(callback=self._start_playing, args=(uris_list, track['uri']))
                 }
             ))
 

@@ -17,12 +17,11 @@ class PlaylistTracksMenu(TracksMenu):
     def _context(self) -> typing.Union[str, None]:
         return f'spotify:playlist:{self.id_playlist}'
 
-    def _get_tracks(self) -> dict:
-        playlist_tracks = {}
+    def _get_tracks(self) -> list:
+        tracks = []
 
         for page in get_all_page(self.spotify_client.playlist_tracks, limit=100, playlist_id=self.id_playlist):
             for track in page:
-                playlist_tracks[track['track']['uri']] = \
-                    f"{track['track']['artists'][0]['name']} - {track['track']['name']}"
+                tracks.append(track['track'])
 
-        return playlist_tracks
+        return tracks
