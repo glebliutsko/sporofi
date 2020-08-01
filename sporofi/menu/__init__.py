@@ -9,5 +9,7 @@ from sporofi.menu.track_menu.artist_tracks_menu import ArtistTracksMenu
 from sporofi.menu.track_menu.liked_tracks_menu import LikedTracksMenu
 from sporofi.menu.track_menu.playlist_tracks_menu import PlaylistTracksMenu
 
-from sporofi.menu.playlists_menu import PlaylistsMenu
-
+from sporofi.menu.user_playlists_menu import UserPlaylistsMenu
+from sporofi.menu.user_liked_albums_menu import UserLikedAlbumsMenu
+from sporofi.menu.artist_albums_menu import ArtistAlbumsMenu
+from sporofi.menu.user_liked_artists_menu import UserLikedArtistsMenu

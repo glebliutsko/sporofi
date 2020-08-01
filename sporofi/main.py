@@ -6,7 +6,8 @@ import os
 import rofi
 from spotipy import Spotify, SpotifyOAuth
 
-from sporofi.menu import ControlMenu, LikedTracksMenu, AlbumTracksMenu, PlaylistTracksMenu, ArtistTracksMenu, PlaylistsMenu
+from sporofi.menu import ControlMenu, LikedTracksMenu, AlbumTracksMenu, PlaylistTracksMenu, ArtistTracksMenu, \
+    UserPlaylistsMenu, UserLikedAlbumsMenu, UserLikedArtistsMenu, ArtistAlbumsMenu
 from sporofi.exception import UserCancel
 
 # DIR_CONF = '$HOME/.config/sporofi/'
@@ -57,7 +58,7 @@ def main():
         rofi_client = rofi.Rofi(rofi_args=['-i'])
 
         try:
-            PlaylistsMenu(sp, rofi_client, user_keys={4: ('Alt+p', 'asdasdad')}).run()
+            UserLikedArtistsMenu(sp, rofi_client).run()
         except UserCancel:
             print('Cancel...')
 

@@ -24,14 +24,12 @@ class TracksMenu(Menu):
                 keys={
                     Key.ENTER: Key(callback=self._start_playing, args=(uris_list, uri))
                 }
-                # callback=self._start_playing,
-                # args=(uris_list, uri)
             ))
 
         return options
 
-    def _start_playing(self, uris: typing.List[str], uri: str):
+    def _start_playing(self, uris: typing.List[str], uri_start: str):
         if not self._context or self._context.split(':')[1] == 'artist':
-            self.spotify_client.start_playback(uris=uris, offset=dict(uri=uri))
+            self.spotify_client.start_playback(uris=uris, offset=dict(uri=uri_start))
         else:
-            self.spotify_client.start_playback(context_uri=self._context, offset=dict(uri=uri))
+            self.spotify_client.start_playback(context_uri=self._context, offset=dict(uri=uri_start))
