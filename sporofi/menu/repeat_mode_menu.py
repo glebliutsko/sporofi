@@ -1,6 +1,6 @@
 import typing
 
-from sporofi.menu import Menu, Option
+from sporofi.menu import Menu, Option, Key
 
 
 class RepeatModeMenu(Menu):
@@ -10,18 +10,15 @@ class RepeatModeMenu(Menu):
         options = [
             Option(
                 text='Off',
-                callback=self.spotify_client.repeat,
-                args=('off', )
+                keys={Key.ENTER: Key(callback=self.spotify_client.repeat, args=('off', ))}
             ),
             Option(
                 text='All',
-                callback=self.spotify_client.repeat,
-                args=('context', )
+                keys={Key.ENTER: Key(callback=self.spotify_client.repeat, args=('context', ))}
             ),
             Option(
                 text='Only',
-                callback=self.spotify_client.repeat,
-                args=('track', )
+                keys={Key.ENTER: Key(callback=self.spotify_client.repeat, args=('track', ))}
             )
         ]
 

@@ -1,6 +1,6 @@
 import typing
 
-from sporofi.menu import Menu, Option
+from sporofi.menu import Menu, Option, Key
 
 
 class TracksMenu(Menu):
@@ -21,8 +21,11 @@ class TracksMenu(Menu):
         for uri, name in tracks.items():
             options.append(Option(
                 text=name,
-                callback=self._start_playing,
-                args=(uris_list, uri)
+                keys={
+                    Key.ENTER: Key(callback=self._start_playing, args=(uris_list, uri))
+                }
+                # callback=self._start_playing,
+                # args=(uris_list, uri)
             ))
 
         return options

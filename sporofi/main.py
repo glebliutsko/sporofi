@@ -57,7 +57,7 @@ def main():
         rofi_client = rofi.Rofi(rofi_args=['-i'])
 
         try:
-            PlaylistsMenu(sp, rofi_client).run()
+            PlaylistsMenu(sp, rofi_client, user_keys={4: ('Alt+p', 'asdasdad')}).run()
         except UserCancel:
             print('Cancel...')
 

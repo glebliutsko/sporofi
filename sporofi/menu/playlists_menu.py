@@ -1,6 +1,6 @@
 import typing
 
-from sporofi.menu import Menu, Option, LikedTracksMenu, PlaylistTracksMenu
+from sporofi.menu import Menu, Option, Key, LikedTracksMenu, PlaylistTracksMenu
 
 
 class PlaylistsMenu(Menu):
@@ -11,15 +11,13 @@ class PlaylistsMenu(Menu):
 
         options = [Option(
             text='Liked songs',
-            next_menu=LikedTracksMenu,
-            args=()
+            keys={Key.ENTER: Key(next_menu=LikedTracksMenu)}
         )]
 
         for playlist in playlists['items']:
             options.append(Option(
                 text=playlist['name'],
-                next_menu=PlaylistTracksMenu,
-                args=(playlist['id'], )
+                keys={Key.ENTER: Key(next_menu=PlaylistTracksMenu, args=(playlist['id'], ))}
             ))
 
         return options

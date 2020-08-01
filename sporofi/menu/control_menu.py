@@ -1,6 +1,6 @@
 import typing
 
-from sporofi.menu import Menu, Option, RepeatModeMenu
+from sporofi.menu import Menu, Option, Key, RepeatModeMenu
 
 
 class ControlMenu(Menu):
@@ -8,15 +8,15 @@ class ControlMenu(Menu):
         options = [
             Option(
                 text='Next',
-                callback=self._next
+                keys={Key.ENTER: Key(callback=self._next)}
             ),
             Option(
                 text='PlayPause',
-                callback=self._playpause
+                keys={Key.ENTER: Key(callback=self._playpause)}
             ),
             Option(
                 text='Previous',
-                callback=self._previous
+                keys={Key.ENTER: Key(callback=self._previous)}
             )
         ]
 
@@ -24,8 +24,7 @@ class ControlMenu(Menu):
 
         options.append(Option(
             text=f'Shuffle [{"on" if playback["shuffle_state"] else "off"}]',
-            callback=self._shuffle,
-            args=(playback["shuffle_state"], )
+            keys={Key.ENTER: Key(callback=self._shuffle, args=(playback["shuffle_state"], ))}
         ))
 
         if playback['repeat_state'] == 'off':
@@ -37,7 +36,7 @@ class ControlMenu(Menu):
 
         options.append(Option(
             text=f'Repeat [{repeat_state}]',
-            next_menu=RepeatModeMenu
+            keys={Key.ENTER: Key(next_menu=RepeatModeMenu)}
         ))
 
         self.spotify_client.current_playback()
