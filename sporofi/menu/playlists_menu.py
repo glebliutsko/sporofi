@@ -4,6 +4,8 @@ from sporofi.menu import Menu, Option, LikedTracksMenu, PlaylistTracksMenu
 
 
 class PlaylistsMenu(Menu):
+    PROMPT = 'playlist'
+
     def _generate_options(self) -> typing.List[Option]:
         playlists = self.spotify_client.current_user_playlists()
 
@@ -21,7 +23,3 @@ class PlaylistsMenu(Menu):
             ))
 
         return options
-
-    @property
-    def prompt(self):
-        return 'playlist'

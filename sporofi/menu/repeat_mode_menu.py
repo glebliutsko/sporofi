@@ -4,6 +4,8 @@ from sporofi.menu import Menu, Option
 
 
 class RepeatModeMenu(Menu):
+    PROMPT = 'mode'
+
     def _generate_options(self) -> typing.List['Option']:
         options = [
             Option(
@@ -24,7 +26,3 @@ class RepeatModeMenu(Menu):
         ]
 
         return options
-
-    @property
-    def prompt(self):
-        return 'mode'

@@ -9,6 +9,9 @@ if typing.TYPE_CHECKING:
 
 
 class Menu:
+    PROMPT = ''
+    MESSAGE = None
+
     def __init__(self, spotify_client: 'Spotify', rofi: 'Rofi'):
         self.spotify_client = spotify_client
         self.rofi = rofi
@@ -24,7 +27,7 @@ class Menu:
         options = self.get_options()
 
         options_text = [i.text for i in options]
-        index, key = self.rofi.select(self.prompt, options_text, message=self.message)
+        index, key = self.rofi.select(self.PROMPT, options_text, message=self.MESSAGE)
 
         if key == -1:
             raise UserCancel
@@ -44,11 +47,3 @@ class Menu:
 
     def _generate_options(self) -> typing.List['Option']:
         raise NotImplemented
-
-    @property
-    def prompt(self):
-        return ''
-
-    @property
-    def message(self):
-        return ''
