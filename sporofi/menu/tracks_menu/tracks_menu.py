@@ -18,9 +18,9 @@ class TracksMenu(Menu):
         uris_list = [track['uri'] for track in tracks]
         options = []
 
-        for track in self._get_tracks():
+        for track in tracks:
             options.append(Option(
-                text=track['name'],
+                text=f'{track["artists"][0]["name"]} - {track["name"]}',
                 keys={
                     Key.ENTER: Key(callback=self._start_playing, args=(uris_list, track['uri']))
                 }

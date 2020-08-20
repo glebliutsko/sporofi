@@ -6,7 +6,8 @@ import os
 import rofi
 from spotipy import Spotify, SpotifyOAuth
 
-from sporofi.menu import MainMenu
+from sporofi.menu import MainMenu, ControlMenu, ArtistTracksMenu, UserPlaylistsMenu, UserLikedAlbumsMenu,\
+    LikedTracksMenu
 from sporofi.exception import UserCancel
 
 # DIR_CONF = '$HOME/.config/sporofi/'
@@ -30,11 +31,21 @@ def get_client_conf() -> dict:
         return json.load(f)
 
 
+modes = {
+    'main': MainMenu,
+    'control': ControlMenu,
+    'artists': ArtistTracksMenu,
+    'albums': UserLikedAlbumsMenu,
+    'tracks': LikedTracksMenu,
+    'playlists': UserPlaylistsMenu,
+}
+
+
 def main():
     parser = argparse.ArgumentParser()
-    parser.add_argument('--config-dir')
-    parser.add_argument('--setup', help='Initial configuration', action='store_true', default=False)
-    parser.add_argument('--mode', help='Initial configuration', choices=['Control'], default=False)
+    # parser.add_argument('--config-dir')
+    parser.add_argument('--setup', action='store_true', default=False)
+    parser.add_argument('--mode', '-m', default=list(modes)[0], choices=modes.keys())
 
     args = parser.parse_args()
 
@@ -53,7 +64,7 @@ def main():
         rofi_client = rofi.Rofi(rofi_args=['-i'])
 
         try:
-            MainMenu(sp, rofi_client).run()
+            modes[args.mode](sp, rofi_client).run()
         except UserCancel:
             print('Cancel...')
 
