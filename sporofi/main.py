@@ -10,8 +10,22 @@ from sporofi.menu import MainMenu, ControlMenu, ArtistTracksMenu, UserPlaylistsM
     LikedTracksMenu
 from sporofi.exception import UserCancel
 
-# DIR_CONF = '$HOME/.config/sporofi/'
-DIR_CONF = os.path.split(os.path.split(__file__)[0])[0]
+
+def get_dir_conf():
+    parent_config_dir = os.getenv('XDG_CONFIG_HOME')
+    if not parent_config_dir:
+        parent_config_dir = os.getenv('HOME')
+    if not parent_config_dir:
+        parent_config_dir = os.getenv('./')
+
+    config_dir = os.path.join(parent_config_dir, 'sporofi')
+    if not os.path.exists(config_dir):
+        os.makedirs(config_dir, exist_ok=True)
+
+    return config_dir
+
+
+DIR_CONF = get_dir_conf()
 
 
 def setup():
@@ -43,7 +57,6 @@ modes = {
 
 def main():
     parser = argparse.ArgumentParser()
-    # parser.add_argument('--config-dir')
     parser.add_argument('--setup', action='store_true', default=False)
     parser.add_argument('--mode', '-m', default=list(modes)[0], choices=modes.keys())
 
